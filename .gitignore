@@ -27,6 +27,9 @@ npm-debug.log*
 # vercel
 .vercel
 
+# deployment docs (contains sensitive infra details)
+DEPLOYMENT.md
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

@@ -30,7 +30,7 @@ async function ghFetch<T>(
     if (rateLimitReset) {
       const resetTime = new Date(parseInt(rateLimitReset) * 1000);
       throw new Error(
-        `GitHub API rate limit exceeded. Resets at ${resetTime.toLocaleTimeString()}. Add a GitHub token to increase limits.`
+        `GitHub API rate limit exceeded. Resets at ${resetTime.toLocaleTimeString()}.`
       );
     }
     throw new Error("GitHub API access forbidden. Check your token permissions.");

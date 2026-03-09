@@ -8,7 +8,7 @@ const CACHE_TTL = 10 * 60 * 1000; // 10 minutes
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const input = searchParams.get("repo");
-  const token = searchParams.get("token") || process.env.GITHUB_TOKEN;
+  const token = process.env.GITHUB_TOKEN;
 
   if (!input) {
     return NextResponse.json(

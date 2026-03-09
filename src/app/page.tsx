@@ -11,7 +11,7 @@ import { FileSearch } from "@/components/ui/FileSearch";
 import { ExportButton } from "@/components/ui/ExportButton";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { StatsOverlay } from "@/components/ui/StatsOverlay";
-import { TokenInput, useGitHubToken } from "@/components/ui/TokenInput";
+
 import { useEnrichment } from "@/hooks/useEnrichment";
 import { buildTerrainLayout } from "@/lib/treemap";
 import { parseRepoInput } from "@/lib/github";
@@ -27,8 +27,6 @@ const TerrainScene = lazy(() =>
 function AppContent() {
   const terrainData = useAppStore((s) => s.terrainData);
   const loading = useAppStore((s) => s.loading);
-  const [ghToken, setGhToken] = useGitHubToken();
-
   // Progressive enrichment with commit data
   useEnrichment();
 
@@ -47,9 +45,8 @@ function AppContent() {
       store.setLoadingPhase("fetching-repo" as LoadingPhase);
       store.setLoadingProgress(0.1);
 
-      const tokenParam = ghToken ? `&token=${encodeURIComponent(ghToken)}` : "";
       const res = await fetch(
-        `/api/repo?repo=${encodeURIComponent(`${owner}/${repo}`)}${tokenParam}`
+        `/api/repo?repo=${encodeURIComponent(`${owner}/${repo}`)}`
       );
 
       if (!res.ok) {
@@ -83,7 +80,7 @@ function AppContent() {
       );
       store.setLoading(false);
     }
-  }, [ghToken]);
+  }, []);
 
   // Auto-load from URL parameter
   useEffect(() => {
@@ -140,9 +137,6 @@ function AppContent() {
 
           <div className="relative z-10 w-full">
             <SearchBar onSubmit={handleSubmit} />
-            <div className="mt-3 flex justify-center">
-              <TokenInput token={ghToken} onTokenChange={setGhToken} />
-            </div>
           </div>
 
           <div className="relative z-10 mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl w-full">
