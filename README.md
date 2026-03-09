@@ -1,5 +1,7 @@
 # Repo Topography
 
+**[Try it live →](https://repo-topography.danielyj.com)**
+
 **See the shape of any codebase.** Structure becomes geography. Activity becomes weather. Languages become biomes.
 
 Repo Topography transforms any public GitHub repository into an interactive 3D terrain landscape. A developer can look at it for five seconds and understand things about a repo that would take twenty minutes of manual exploration.
@@ -31,7 +33,6 @@ The terrain is built using a **squarified treemap** algorithm that maps the file
 - **Cinematic camera** intro that sweeps in when a repo loads
 - **Shareable URLs** via `?r=owner/repo` query parameter
 - **Screenshot export** to PNG
-- **GitHub token support** for higher API rate limits
 - **Progressive enrichment** — terrain renders instantly, commit heat data loads in the background
 
 ![Stats Dashboard — facebook/react](assets/facebook_react_tab.png)
@@ -57,13 +58,7 @@ Open [http://localhost:3000](http://localhost:3000) and enter a repository.
 
 ### GitHub Token (Optional)
 
-Without a token, GitHub allows 60 API requests/hour. To increase this to 5,000/hr:
-
-1. Create a [Personal Access Token](https://github.com/settings/tokens) (no scopes needed for public repos)
-2. Click "Add GitHub Token" on the landing page and paste it in
-3. The token is stored in your browser's localStorage — never sent to any server except GitHub's API
-
-Alternatively, create a `.env.local` file:
+Without a token, GitHub allows 60 API requests/hour. To increase this to 5,000/hr, create a `.env.local` file:
 
 ```
 GITHUB_TOKEN=ghp_your_token_here
