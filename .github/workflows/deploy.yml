@@ -29,7 +29,7 @@ jobs:
 
       - name: Package standalone build
         run: |
-          cp -r public .next/standalone/public
+          [ -d public ] && cp -r public .next/standalone/public
           cp -r .next/static .next/standalone/.next/static
           tar -czf deploy.tar.gz -C .next/standalone .
 
